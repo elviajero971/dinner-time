@@ -1,13 +1,21 @@
+// src/App.jsx
 import React from 'react';
-import RecipesList from './components/RecipesList';
-import './App.css'; // Optional: You can add some CSS styles
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RecipeList from './components/RecipesList/RecipesList';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
+import './App.css';
 
-function App() {
+const App = () => {
     return (
         <div className="App">
-            <RecipesList />
+            <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                <Routes>
+                    <Route path="/" element={<RecipeList />} />
+                    <Route path="/recipe/:id" element={<RecipeDetails />} />
+                </Routes>
+            </Router>
         </div>
     );
-}
+};
 
 export default App;
